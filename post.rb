@@ -8,9 +8,8 @@ class Post
   def initialize(post_url)
     # doc = Nokogiri::HTML(File.open('../post.html'))
     doc = Nokogiri::HTML(File.open('post.html'))
-
     @title = doc.css('title').inner_text #hacker news title
-    @url = post_url #url #hacker news url
+    @url = doc.css('.sitestr').text #url #hacker news url
     @points = doc.css('.score').inner_text.slice(/[0-9]+/,0)
     @item_id = doc.css(".score").to_s.slice(/_(\d+)"/, 1)
     @comment_list = []
