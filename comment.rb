@@ -1,16 +1,17 @@
 class Comment
 
-  attr_reader :text, :author, :days_ago
+  attr_reader :text, :author, :age
 
-  def initialize(text, author, days_ago)
+  def initialize(text, author, age)
     @text = text
     @author = author
-    @days_ago = days_ago
+    @age = age
   end
 
   def display_comment
-    puts author
-    puts days_ago
-    puts text
+    puts "Author: #{author}"
+    puts "Days Old: #{age}"
+    puts "Comment Text: #{text}"
+    puts ""
   end
 end

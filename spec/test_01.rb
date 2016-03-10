@@ -6,8 +6,8 @@ require_relative 'spec_helper'
 describe Post do
 
   before :each do
-    # @post_url = 
-    @post = Post.new('../post.html')
+    post_url = '../post.html'
+    @post = Post.new(post_url)
   end
 
   it "should not be nil when created" do
@@ -34,19 +34,36 @@ describe Post do
 
   end
 
+  describe '#initilize' do
+
+    it 'should throw an error is url is not provided' do
+      expect{ Post.new('') }.to raise_error PostError
+    end
+
+    it 'should throw post Error is it cannot open document' do
+      expect {Post.new('www.google.ca')}.to raise_error PostError
+    end
+
+  end
+
+
+
   describe '#add_comment' do
 
-    it 'should take in a comment object' 
+    # it 'should take in a comment object' do
+    #   expect{ @post.add_comment(1) }.to raise_error PostError
+    # end
     
 
-    it 'should add the comment to the comment list' do
-      comment = Comment.new("","","")
-      # expect(@post).to receive(:add_comment).with(comment)
-      # expect(@post).to be_truthy
-      # expect(@post.comment_list.length).to be > 0
-      @post.add_comment(comment)
-      expect(@post.comment_list.length).to be > 0
-    end
+
+    # it 'should add the comment to the comment list' do
+    #   comment = Comment.new("","","")
+    #   # expect(@post).to receive(:add_comment).with(comment)
+    #   # expect(@post).to be_truthy
+    #   # expect(@post.comment_list.length).to be > 0
+    #   @post.add_comment(comment)
+    #   expect(@post.comment_list.length).to be > 0
+    # end
 
 
   end

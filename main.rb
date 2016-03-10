@@ -1,15 +1,25 @@
+#!/usr/bin/env ruby
+
 require 'nokogiri'
+require 'open-uri'
 require_relative 'post'
+require_relative 'reddit/redditpost'
 require_relative 'comment'
 
 
-doc = Nokogiri::HTML(File.open('post.html'))
+# doc = Nokogiri::HTML(File.open(html_file.read))
+# doc = Nokogiri::HTML(open(html_file))
+# puts html_file.read
 
-first_post = Post.new('post.html')
+# input_html = ARGV[0]
+# html_file = open(input_html)
+
+# first_post = Post.new(html_file)
+# first_post.display_post_info
 
 
-# first_post.get_comments
-# puts first_post.post[2].days_ago
-# first_post.post.each {|x| x.display_comment}
+reddit_url = 'reddit/post.html'
 
-# comments = doc.css('.comhead').text#.slice(/[0-9]+/)#.text.strip.delete("/n")
+reddit_post = RedditPost.new(reddit_url)
+
+
