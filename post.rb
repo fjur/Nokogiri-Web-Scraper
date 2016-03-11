@@ -15,11 +15,12 @@ class Post
     rescue
       raise PostError, "Could not open document"
     end
+
     @title = HackerNewsFormat.get_title_from_html(doc)
     @url = HackerNewsFormat.get_url_from_html(doc)
     @points = HackerNewsFormat.get_points_from_html(doc)
     @item_id = HackerNewsFormat.get_item_id_from_html(doc)
-    @comment_list = []
+    @comment_list = [] #Could call get_comments_from_post and pass the doc, Will the doc be passed by value or reference? Check if you can force pass by reference
     @post_url = post_url
     get_comments_from_post
   end
@@ -28,7 +29,7 @@ class Post
     comment_list
   end
 
-  def display_post_info
+  def display_post_info #Use to_str and pass to a display class, makes it easier to unit test
     puts "Title\t: #{title}"
     puts "Url\t: #{url}"
     puts "Points\t: #{points}"
